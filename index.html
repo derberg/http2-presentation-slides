@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Web Performance and New HTTP/2 Era</title>
+
+		<meta name="description" content="Workarounds for improving Web performance and how it will change with HTTP/2">
+		<meta name="author" content="Łukasz Górnicki">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/custom.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h3>Web Performance and New HTTP/2 Era</h3>
+					<h6>Hacks for improving Web performance and how it will change with HTTP/2</h6>
+					<p>
+						<small>Created by <a href="https://github.com/derberg">Łukasz Górnicki</a> / <a href="http://twitter.com/derberq">@derberq</a></small>
+					</p>
+				</section>
+
+				<section>
+					<h2>Agenda:</h2>
+					<h3>1. Short history of HTTP protocol</h3>
+					<h3>2. Hacks for improving performance on client side</h3>
+					<h3>3. Changes comming with HTTP/2</h3>
+				</section>
+
+				<section>
+					<section>
+						<h2>Super Short History of HTTP Protocol</h2>
+						<p>
+							HTTP vs Cars
+						</p>
+						<br>
+						<a href="#" class="navigate-down">
+						</a>
+					</section>
+					<section id="fragments09">
+						<h2>HTTP/0.9 (1991)</h2>
+						<img class="fragment" src="img/tico.jpg">
+					</section>
+					<section>
+						<h3>Which movie released in 1991 is my favourite</h3>
+						<p>Die Hard</p>
+						<p>Robin Hood: Prince of Thieves</p>
+						<p>The Silence of the Lambs</p>
+						<p>Double Impact</p>
+					</section>
+					<section id="fragments10">
+						<h2>HTTP/1.0 (1996)</h2>
+						<img class="fragment" src="img/chevrolet-savana.jpg">
+					</section>
+					<section>
+						<img style="max-width: 100%;" src="img/yahoo.png">
+					</section>
+					<section>
+						<h3>Who won Oscar for a Best Picture</h3>
+						<p>Braveheart</p>
+						<p>Forrest Gump</p>
+						<p>Titanic</p>
+					</section>
+					<section id="fragments11">
+						<h2>HTTP/1.1 (1999)</h2>
+						<img style="max-width: 75%;" class="fragment" src="img/cadillac99.jpg">
+					</section>
+					<section>
+						<img style="max-width: 75%;" src="img/amazon.jpg">
+					</section>
+					<section>
+						<img style="max-width: 80%;" src="img/matrix.jpg">
+						<p>Bill Clinton impeachment</p>
+						<p>NATO bombs Yugoslavia because of Kosovo</p>
+					</section>
+					<section id="fragmentsspdy">
+						<h2>SPDY (2012)</h2>
+						<img style="max-width: 80%;" class="fragment" src="img/2013_Cadillac_ATS.png">
+					</section>
+					<section>
+						<h3>Who won Champions League final</h3>
+						<p>Bayern Munich</p>
+						<p>Chelsea</p>
+						<p>RKS Zagłębie Dąbrowa Górnicza</p>
+						<p>Barcelona</p>
+					</section>
+					<section id="fragments2">
+						<h2>HTTP/2 (May 2015)</h2>
+						<img class="fragment" src="img/2015_Cadillac_ATS.jpg">
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Browser Performance Hacks</h2>
+						<p>
+							how does communication work and how browsers solve it with multiple connections
+						</p>
+					</section>
+					<section>
+						<h2>Ping Pong</h2>
+						<img style="max-width: 25%;" class="fragment" src="img/conn1.png">
+						<img style="max-width: 50%;" class="fragment" src="img/max-browser-parallel-connection.png">
+					</section>
+				</section>
+
+				<section>
+
+					<section>
+						<h2>Client Side Web Performance Hacks</h2>
+						<ul>
+							<p><strong>HTML/JS/CSS</strong></p>
+							<li>Minification</li>
+							<li>Uglification</li>
+							<li>Concatenation</li>
+							<li>Vulcanization?</li>
+							<p>
+								<strong>Images</strong>
+							</p>
+							<li>Compression</li>
+							<li>Spriting</li>
+						</ul>
+					</section>
+					<section>
+						<h4>Domain Sharding</h4>
+						<a href="https://www.youtube.com/results?search_query=allegro+legendy+polskie">https://www.youtube.com/results?search_query=allegro+legendy+polskie</a> and images split among different domains
+
+					</section>
+					<section>
+						<h4>Minification - Uglification - Concatenation in Action</h4>
+						<img class="fragment" src="img/ugly.png">
+					</section>
+
+					<section>
+						<h4>Compression</h4>
+						<p>
+							Nothing to show, ImageMagic simply rocks
+						</p>
+					</section>
+
+					<section>
+						<h4>Spriting</h4>
+						<a href="http://spritegen.website-performance.org/">http://spritegen.website-performance.org/</a>
+					</section>
+
+				</section>
+
+				<section>
+					<section>
+						<h2>Some HTTP/2 Features</h2>
+					</section>
+					<section>
+						<h2>Binary and Multiplexing</h2>
+						<img style="max-width: 60%;" src="img/conn2.png">
+					</section>
+					<section>
+						<h2>Binary and Multiplexing</h2>
+						<img style="max-width: 60%;" src="img/wat-is-http2-multiplexing.gif">
+					</section>
+
+					<section>
+						<h2>Binary and Multiplexing</h2>
+						<a href="https://http2.akamai.com/demo">https://http2.akamai.com/demo</a>
+						<a href="https://http2.golang.org/gophertiles?latency=0">https://http2.golang.org/gophertiles?latency=0</a>
+					</section>
+					<section>
+						<h2>Server Push</h2>
+						<img style="max-width: 100%;" src="img/push.png">
+					</section>
+					<section>
+						<h2>Header Compression</h2>
+						<img src="img/headers.png">
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>HTTP/2 Dislikes</h2>
+					</section>
+					<section>
+						<h2>Haters Gonna Hate</h2>
+						<img src="img/security.png">
+					</section>
+					<section>
+						<h2>Haters Gonna Hate</h2>
+						<img style="max-width: 80%;" src="img/google.png">
+					</section>
+				</section>
+
+
+				<section>
+					<section>
+						<h2>Summary</h2>
+					</section>
+					<section>
+						<h3>1. You know how to improve performance for HTTP/1.1</h3>
+						<h3>2. You know what changes come with HTTP/2</h3>
+						<h3>3. Should I care?</h3>
+					</section>
+					<section>
+						<h2>Should I care?</h2>
+						<br>
+						<br>
+						<ul>
+							<li>01.2016: 6% adoption</li>
+							<li>03.2017: 12% adoption</li>
+							<li>08.2017: 16% adoption</li>
+							<br>
+							<br>
+							<a href="https://w3techs.com/technologies/details/ce-http2/all/all">https://w3techs.com/technologies/details/ce-http2/all/all</a>
+						</ul>
+					</section>
+					<section>
+						<h2>Should I care?</h2>
+						<br>
+						<br>
+						<a href="https://github.com/http2/http2-spec/wiki/Implementations">Implementations</a>
+					</section>
+					<section>
+						<h2>Should I care?</h2>
+						<br>
+						<br>
+						<p>Nginx doesn't support server push yet</p>
+						<p>Node just recently started supporting the protocol natively</p>
+						<p>CloudFoundry doesn't support HTTP/2 at all</p>
+						<p>K8S has some issues if you want to use Ingress</p>
+					</section>
+					<section>
+						<h2>Should I care?</h2>
+						<h2>YES YES YES</h2>
+						<h2>DEMO</h2>
+					</section>
+				</section>
+
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
